@@ -1,4 +1,4 @@
-import {NavLink,Link} from 'react-router-dom';
+import {NavLink,Link, useLocation} from 'react-router-dom';
 import logo from '../../img/logo.png';
 import React, { useState } from 'react';
 import { useCart } from '../../context/cart';
@@ -28,6 +28,8 @@ const NavBar = ({activePage}) => {
     const [wishList,setWishList] = useWishList();
     const [search,setSearch] = useSearch();
     const [auth,setAuth] = useAuth();
+    const location = useLocation();
+    const pagesDontHaveSearchBar = ['/join'];
 
     const handleSearch = ()=>{
         console.log("first")
@@ -91,14 +93,18 @@ const NavBar = ({activePage}) => {
                                 
                             </li>
                         </ul>
-                        <SearchWrapper className="desktop" search={search} setSearch={setSearch} handleSearch={handleSearch} />
+                        {
+                            !pagesDontHaveSearchBar?.includes(location.pathname)&&<SearchWrapper className="desktop" search={search} setSearch={setSearch} handleSearch={handleSearch} />
+                        }
                     </div>
                 </div>
                 {
                     document.body.classList.toggle('overFlowhidden',open)
                 }
             </nav>
-            <SearchWrapper className="mobile" search={search} setSearch={setSearch} handleSearch={handleSearch} />
+            {
+                !pagesDontHaveSearchBar?.includes(location.pathname)&&<SearchWrapper className="mobile" search={search} setSearch={setSearch} handleSearch={handleSearch} />
+            }
         </>
   )
 }

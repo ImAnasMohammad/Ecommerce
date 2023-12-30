@@ -1,0 +1,57 @@
+[
+    {
+        "_id": "fsfdsfsdfsdfsff5s4f6s7f8sd4f",
+        "name": "Shaik user",
+        "phone": 1234567890,
+        "pinCode": 789456,
+        "address": "Ramireddy padu main road",
+        "district": "guntur",
+        "isDefault":0,
+        "state": "Andhra pradesh",
+        "type": 0
+    },
+    {
+        "_id": "fsfdsfsdfsdfsff5s4f6s7f8sssd4f",
+        "name": "Shaik slkfsdfkjlsdjfsdkjflsdkfjsdkfsldfklsdkfsdf",
+        "phone": 1234567890,
+        "pinCode": 324244432423423243242498474375384,
+        "address": "Ramireddy padu main road",
+        "district": "guntur",
+        "isDefault":0,
+        "state": "Andhra pradesh",
+        "type": 1
+    },
+    {
+        "_id": "fsfdsfsdfsdfsff5es4f6sdsf7f8sd4f",
+        "name": "Shaik user",
+        "phone": 1234567890,
+        "pinCode": 789456,
+        "address": "Ramireddy padu main rsfsdfsdfsdfsdddddddddddddddddddddddddddddddddoad",
+        "district": "guntur",
+        "isDefault":0,
+        "state": "Andhra pradesh",
+        "type": 0
+    },
+    {
+        "_id": "fsfdsfsdfsdfsfwf5s4f6ssdf7f8sd4f",
+        "name": "Shaik user",
+        "phone": 1234567890,
+        "pinCode": 789456,
+        "address": "Ramireddy padu main rdsfssdfsfssdoad",
+        "district": "guntur",
+        "isDefault":0,
+        "state": "Andhra pssfdfsdfsdfsdfsfsfsfsdsfsdfsdfsfdsfsradesh",
+        "type": 1
+    },
+    {
+        "_id": "fsfdsfsdfsdfsff5s4f6s7rewrf8sdfsfd4f",
+        "name": "Shaik user",
+        "phone": 1234567333333333333333333333333333333333333333890,
+        "pinCode": 789456,
+        "address": "Ramireddy padu main road",
+        "district": "guntur",
+        "isDefault":0,
+        "state": "Andhra pradesh",
+        "type": 0
+    }
+]

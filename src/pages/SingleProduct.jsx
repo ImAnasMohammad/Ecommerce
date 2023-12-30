@@ -8,6 +8,7 @@ import { FaHeart } from "react-icons/fa";
 import { useWishList } from '../context/wishlist';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
+import d from '../components/dummyData/product.json';
 import img from '../img/f6.jpg'
 import img1 from '../img/f7.jpg'
 import img2 from '../img/p1.webp'
@@ -103,6 +104,7 @@ const SingleProduct = () => {
 
     useEffect(()=>{
         getProduct();
+        console.log(d)
     },[]);
 
 

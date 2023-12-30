@@ -1,0 +1,31 @@
+{
+    "id":"sfjkdsfisudf39834hj3",
+    "metaData":{
+        "id":"fskfjsdfsdlkfsdkff",
+        "name":"Product 1",
+        "description":"this is the basic description of the product",
+        "points":["fdsfsdf","fsdfsdfsdfsf","sfjskjfhskdfhds"],
+        "about":{
+            "material type":"sjdkf",
+            "fabric":"fsfdsdf",
+            "sleve type":"fsfsdfs"
+        },
+        "category":{
+            "id":"skjfusufsdf0df9dff",
+            "name":"Men's",
+            "logo":"Path of logo"
+        },
+        "subCategory":{
+            "id":"skjfusufsdf0df9dff",
+            "name":"Men's Bottom wear",
+            "logo":"Path of logo"
+        }
+    },
+    "size":{
+        "id":"sfosdfs8dfsdkjfsdlfk",
+        "type":"s"
+    },
+    "quntity":24,
+    "price":1200,
+    "discount":10
+}

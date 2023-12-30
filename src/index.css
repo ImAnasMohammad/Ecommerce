@@ -19,8 +19,8 @@ font-family: 'Roboto', sans-serif; */
     --btnPaddingHor:30px;
     --successColor:green;
     --searchBorder-radius:10px;
+    --failedColor:rgb(232, 5, 5)
 }
-
 *{
     margin: 0;
     padding: 0;
@@ -43,21 +43,24 @@ body{
     left: 0;
     right: 0;
     width: 100vw;
-    height: 100vh;
+    min-height: 100dvh;
+    max-width: 100%;
     background-color: rgba(0, 0, 0, 0.4);
-    display: flex;
-    justify-content: center;
     z-index: 998;
 }
+
 .popup-wrapper{
     z-index: 999;
     padding: 10px 20px;
     border-radius: 5px;
     background-color: #fff;
     max-width: 450px;
-    width: 100%;
+    width: 95%;
     height: fit-content;
     margin-top: 30px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .popup-wrapper header{
@@ -82,6 +85,8 @@ body{
 }
 .dailog-content{
     padding: 10px;
+    max-height: 75vh;
+    overflow: auto;
 }
 .select-wrapper{
     display: flex;
@@ -90,9 +95,11 @@ body{
     align-items: center;
 }
 .radio-btn{
+    min-height: 15px;
+    min-width: 15px;
+    border-radius: 50%;
     height: 15px;
     width: 15px;
-    border-radius: 50%;
     border: 2px solid var(--mainColor);
     position: relative;
 }
@@ -132,9 +139,9 @@ body{
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-49.5%,-49.5%);
-    width:105%;
-    height:105%;
+    transform: translate(-50%,-50%);
+    width:110%;
+    height:110%;
 }
 .select-btn.inActive:hover{
     background-color:#dcdcdc;
@@ -262,6 +269,53 @@ span{
     transform: translate(-50%,-50%);
     background-color: var(--mainColor);
     border-radius: 2px;
+}
+
+/*
+
++++++++++++ style for input +++++++++++++++++++++++++
+
+*/
+.input-wrapper{
+    position: relative;
+    width: 100%;
+}
+.input-wrapper input{
+    width: 100%;
+    outline: none;
+    padding: 10px;
+    border: 1px solid rgba(0,0,0,0.5);
+}
+
+.input-wrapper span{
+    position: absolute;
+    left:0px;
+    text-transform: capitalize;
+    font-size: .7rem;
+    transition: all .2s;
+    width: fit-content;
+    padding-left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: text;
+    color: rgba(0,0,0,0.5);
+}
+.input-wrapper input:focus ~ span,
+.input-wrapper input:valid ~ span
+{
+    font-size: .6rem;
+    top:0%;
+    padding: 0px 10px;
+    transform: translate(10px,-50%);
+    background-color: var(--textColor);
+    color: var(--mainColor);
+}
+.input-wrapper input:focus{
+    border: 1px solid var(--mainColor);
+}
+
+.input-wrapper input.invalid:valid{
+    border: 1px solid var(--failedColor);
 }
 
 /* style  for nav bar  */
@@ -1339,6 +1393,11 @@ div.line{
     border:1px solid rgba(0,0,0,0.2);
     cursor: pointer;
 }
+.address-single-wrapper>div{
+    display: flex;
+    gap:10px;
+}
+
 .address-single-wrapper:hover{
     box-shadow: 0px 0px 50px 0.5px rgba(0, 0, 0,0.1);
 }
@@ -1347,6 +1406,8 @@ div.line{
     flex-direction: column;
     gap:5px;
     flex:1 1 auto;
+    /* background-color: red; */
+    overflow: hidden;
 }
 .highlite{
     color: var(--mainColor);
@@ -1358,6 +1419,7 @@ div.line{
 }
 .address-wrapper div{
     font-size: 14px;
+    word-break: break-all;
 }
 .remove-edit-btns{
     display: flex;
@@ -1365,9 +1427,100 @@ div.line{
     flex:0 0 135x;
     gap:5px;
     visibility: hidden;
-    transition: visibility .5s;
+    transition: all .5s;
 }
 
 .address-single-wrapper:hover .remove-edit-btns button{
     visibility: visible;
 }
+.select-type{
+    display:flex;
+    gap: 10px;
+}
+.select-type .highlite{
+    margin: 0px;
+    cursor: pointer;
+    border-width: 2px;
+    font-weight: 700;
+    color:var(--text2Color);
+    border-color:var(--text2Color);
+}
+.select-type .highlite.active{
+    color:var(--mainColor);
+    border-color:var(--mainColor);
+}
+.address-form form{
+    display: flex;
+    flex-direction: column;
+    gap:30px;
+    max-height: 100%;
+}
+
+@media screen and (max-width:700px){
+    .price-details-wrapper,.address-payment-cart-wrapper{
+        padding: 20px 5px;
+        border-radius: 0px;
+    }
+    .main-content-wrapper{
+        width: 100%;
+    }
+    .address-single-wrapper{
+        flex-direction: column;
+    }
+    .address-single-wrapper .remove-edit-btns button{
+        visibility: visible;
+    }
+    .remove-edit-btns{
+        height: 0px;
+        overflow: hidden;
+        transition: height .5s;
+    }
+    .remove-edit-btns.active{
+        height:fit-content;
+    }
+}
+
+
+
+/* Style for Button component  */
+
+/* $offset: 187;
+$duration: 1.4s; */
+/* 
+.spinner {
+  animation: rotator 1.4s linear infinite;
+}
+
+@keyframes rotator {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(270deg); }
+}
+
+.path {
+  stroke-dasharray:187;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  animation:
+    dash 1.4s ease-in-out infinite, 
+    colors calc(1.4s*4) ease-in-out infinite;
+}
+
+@keyframes colors {
+  0% { stroke: #4285F4; }
+  25% { stroke: #DE3E35; }
+  50% { stroke: #F7C223; }
+  75% { stroke: #1B9A59; }
+  100% { stroke: #4285F4; }
+}
+
+@keyframes dash {
+ 0% { stroke-dashoffset: 187; }
+ 50% {
+   stroke-dashoffset: 187/4;
+   transform:rotate(135deg);
+ }
+ 100% {
+   stroke-dashoffset: 187;
+   transform:rotate(450deg);
+ }
+} */

@@ -1,14 +1,52 @@
 import React, { useEffect, useState } from 'react'
 import { useCart } from '../context/cart'
 import Dailog from './layouts/Dailog';
-import { IoMdClose } from "react-icons/io";
 import toast from 'react-hot-toast';
+import SingleCartItem from './templates/SingleCartItem';
 
 const CartItems = ({items}) => {
   const [cart,setCart] = useCart();
   const [dailogContent,setDailogContent] = useState(null);
-  const [size,setSize] = useState('s');
-  const [quntity,setQuntity] = useState(1);
+
+  const removeCartItem = (index)=>{
+    const newCart = [...cart];
+    newCart.splice(index, 1);
+    setCart(newCart);
+    toast.success("Product Removed successfully")
+  }
+
+  const handleChange = async(type,index)=>{
+    // type 0 for size and 1 for quntity
+    let options = [];
+    let value = null;
+    if(type){
+      options = [1,2,3,5,6];  //get data from api
+      value = cart[index]?.quntity;
+    }else{
+      options = ['s','m','l','xl','xxl'];
+      value = cart[index]?.size;
+    }
+    if(!options || !value){
+      toast.error("Something went wrong")
+      return;
+    }
+    OptionsContiner({
+      options,
+      value,
+      setDailogContent,
+      handleClick
+    })
+
+  }
+
+  const handleClick = ()=>{
+
+  }
+
+  useEffect(()=>{
+
+  },[])
+
   return (
     <>
       <Dailog dailogContent={dailogContent} setDailogContent={setDailogContent}>
@@ -17,45 +55,21 @@ const CartItems = ({items}) => {
       <h3>My Cart</h3>
       <div className="line"></div>
       {
-        items?.length<1?<div className="center">
+        cart?.length<1?<div className="center">
             <h3>No Items Found In Cart</h3>
             <button className='btn btn-primary'>Shop Now</button>
         </div>:(
           <div className="product-card cart-item" style={{border:'none',borderBottom:'1px solid rgba(0,0,0,0.1)'}}>
             {
-              items?.map(item=>(
-                <div>
-                    <div className='img-wrapper'>
-                      <img src={item?.img} alt="Product" />
-                    </div>
-                    <div className="product-details">
-                        <p className="product-name">{item?.name}</p>
-                        <p>
-                            <span className="product-current-price">Rs {item?.variations?.discount?((item?.variations?.price*item?.variations?.discount)/100):item?.variations?.price}</span>
-                            {
-                                item?.variations?.discount?(
-                                <>
-                                    <del className="product-actual-price">Rs {item?.variations?.price}</del>
-                                    <span className="product-discount">{item?.variations?.discount}%</span>
-                                </>):''
-                            }
-                        </p>
-                        <div className="size-quntity">
-                          <div className="size" onClick={()=>setDailogContent({title:"Select Size",options:['s','m','l'],value:size,setValue:setSize})}>
-                            <span className='select-size'>Select Size</span>
-                            <button className="select-btn">{size}</button>
-                          </div>
-                          <div className="size" onClick={()=>setDailogContent({title:"Select Quntity",options:[1,2,3,4,5,6,7,8,9],value:quntity,setValue:setQuntity})}>
-                            <span className='select-size'>Select Quntity</span>
-                            <button className="select-btn">{quntity}</button>
-                          </div>
-                        </div>
-                    </div>
-                    <div className="remove-item-cart">
-                      <abbr title="Remove item" onClick={()=>toast.success("Product successfully removed")}><IoMdClose /></abbr>
-                    </div>
-                </div>
-              ))
+              cart?.map((item,index)=>(
+                <SingleCartItem
+                  index={index}
+                  item={item}
+                  removeCartItem={removeCartItem}
+                  handleChange={handleChange}
+                  key={index}
+                  />
+                ))
             }
           </div>
         )
@@ -65,11 +79,7 @@ const CartItems = ({items}) => {
 }
 
 
-const OptionsContiner = ({options,value,setValue,setDailogContent}) =>{
-  const handleClick = (i) =>{
-    setValue(i);
-    setDailogContent(false)
-  }
+const OptionsContiner = ({options,value,handleClick}) =>{
   return(
     <div className="select-wrapper">
       {

@@ -11,6 +11,7 @@ import img from '../img/p1.webp'
 const Cart = () => {
   const [routeStage,setRouteStage] = useState(0);
 
+
   const fetchData = [{
     name:"product",
     img:img,
@@ -88,7 +89,10 @@ const Cart = () => {
         <div className="address-payment-cart-wrapper">
           {components[routeStage]}
         </div>
-        <PriceDetails stage={routeStage} setStage={setRouteStage}/>
+        {
+          routeStage<3 && <PriceDetails stage={routeStage} setStage={setRouteStage}/>
+        }
+        
       </div>
     </Layout>
   )

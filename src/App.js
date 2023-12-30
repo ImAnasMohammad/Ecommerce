@@ -10,6 +10,7 @@ import NotFound from './pages/NotFound';
 import Cart from './pages/Cart';
 import WishList from './pages/WishList';
 import Join from './pages/Join';
+// import Button from './components/components/Button';
 
 function App() {
   return(
@@ -21,6 +22,7 @@ function App() {
     <Route path='/join' element={<Join/>}/>
     <Route path='/product/:slug' element={<SingleProduct/>}/>
     <Route path='/categories' element={<Categorie/>}/>
+    {/* <Route path="/button" element={<Button/>}/> */}
     <Route path="*"element={<NotFound/>}/>
   </Routes>
   )
