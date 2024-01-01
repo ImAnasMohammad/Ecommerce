@@ -1,4 +1,4 @@
-import {NavLink,Link, useLocation} from 'react-router-dom';
+import {NavLink, useLocation} from 'react-router-dom';
 import logo from '../../img/logo.png';
 import React, { useState } from 'react';
 import { useCart } from '../../context/cart';
@@ -14,22 +14,24 @@ import { FaUser } from "react-icons/fa";
 import { useWishList } from '../../context/wishlist';
 
 const SearchWrapper = ({className,search,setSearch,handleSearch}) =>{
+    const location = useLocation();
+    const pagesHaveSearchBar = ['','home','categories','product','wishlist'];
+    console.log(location.pathname.split('/')[1])
     return (
-        <div className={`search-wrapper ${className}`}>
-            <input type="search" onChange={e=>setSearch(e.target.value)} value={search}className='searchInput' />
-            <FaSearch className='searchIcon' onClick={()=>handleSearch()}/>
+        pagesHaveSearchBar?.includes(location.pathname.split('/')[1])&&<div className={`search-wrapper ${className}`}>
+        <input type="search" onChange={e=>setSearch(e.target.value)} value={search}className='searchInput' />
+        <FaSearch className='searchIcon' onClick={handleSearch}/>
         </div>
+        
     )
 }
 
-const NavBar = ({activePage}) => {
+const NavBar = () => {
     const [open,setOpen] = useState(false);
     const [cart,setCart] = useCart();
     const [wishList,setWishList] = useWishList();
     const [search,setSearch] = useSearch();
     const [auth,setAuth] = useAuth();
-    const location = useLocation();
-    const pagesDontHaveSearchBar = ['/join'];
 
     const handleSearch = ()=>{
         console.log("first")
@@ -49,7 +51,6 @@ const NavBar = ({activePage}) => {
             slug:'kids'
         }
     ];
-    if(activePage===undefined || !activePage) activePage='home';
   return (
         <>
             <nav className="main-navBar">
@@ -71,40 +72,36 @@ const NavBar = ({activePage}) => {
                     <div className={`nav-links ${open?'right':''}`}>
                         <ul>
                             <li>
-                                <Link to="/" className={`${activePage=='home'?'active':''}`}><IoHomeSharp className='nav-icon'/>home</Link>
+                                <NavLink to="/" activeClassName='active'><IoHomeSharp className='nav-icon'/>home</NavLink>
                             </li>
                             <li>
-                                <Link to="/categories" className={`${activePage=='categories'?'active':''}`}><BiSolidCategory className='nav-icon' />category</Link>
+                                <NavLink to="/categories" activeClassName='active'><BiSolidCategory className='nav-icon' />category</NavLink>
                             </li>
                             <li>
-                                <Link to="/cart" className={`${activePage=='cart'?'active':''}`}><FaShoppingCart className='nav-icon' />cart({cart?.length})</Link>
+                                <NavLink to="/cart" activeClassName='active'><FaShoppingCart className='nav-icon' />cart({cart?.length})</NavLink>
                             </li>
                             <li>
-                                <Link to="/wishlist" className={`${activePage=='wishlist'?'active':''}`}><FaHeart className='nav-icon'/>wishlist({wishList?.length})</Link>
+                                <NavLink to="/wishlist" activeClassName='active'><FaHeart className='nav-icon'/>wishlist({wishList?.length})</NavLink>
                             </li>
                             <li>
                                 {
                                     auth?.token?(
-                                        <Link className={`${activePage=='join'?'active':''}`} to="/profile"><FaUser className='nav-icon' />Profile</Link>
+                                        <NavLink activeClassName='active' to="/profile"><FaUser className='nav-icon' />Profile</NavLink>
                                     ):(
-                                        <Link className={`${activePage=='join'?'active':''}`} to="/join"><RxEnter className='nav-icon' />join</Link>
+                                        <NavLink activeClassName='active' to="/user/profile"><RxEnter className='nav-icon' />join</NavLink>
                                     )
                                 }
                                 
                             </li>
                         </ul>
-                        {
-                            !pagesDontHaveSearchBar?.includes(location.pathname)&&<SearchWrapper className="desktop" search={search} setSearch={setSearch} handleSearch={handleSearch} />
-                        }
+                        <SearchWrapper className="desktop" search={search} setSearch={setSearch} handleSearch={handleSearch} />
                     </div>
                 </div>
                 {
                     document.body.classList.toggle('overFlowhidden',open)
                 }
             </nav>
-            {
-                !pagesDontHaveSearchBar?.includes(location.pathname)&&<SearchWrapper className="mobile" search={search} setSearch={setSearch} handleSearch={handleSearch} />
-            }
+            <SearchWrapper className="mobile" search={search} setSearch={setSearch} handleSearch={handleSearch} />
         </>
   )
 }

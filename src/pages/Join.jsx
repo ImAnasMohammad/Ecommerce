@@ -3,7 +3,7 @@ import Layout from '../components/layouts/Layout'
 
 const Join = () => {
   return (
-    <Layout title="Join - to ecommerce" activePage="join">
+    <Layout title="Join - to ecommerce">
         consol;
     </Layout>
   )

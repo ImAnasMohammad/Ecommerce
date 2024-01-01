@@ -1,6 +1,5 @@
 import './App.css';
 
-import NavBar from './components/layouts/NavBar';
 import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home'
 import Categorie from './pages/Categorie'
@@ -10,6 +9,11 @@ import NotFound from './pages/NotFound';
 import Cart from './pages/Cart';
 import WishList from './pages/WishList';
 import Join from './pages/Join';
+import UserPrivateRoute from './components/routes/UserPrivateRoute';
+import Address from './pages/Address';
+import ManageProfile from './pages/ManageProfile';
+import Payment from './pages/Payment';
+import Orders from './pages/Orders';
 // import Button from './components/components/Button';
 
 function App() {
@@ -23,6 +27,18 @@ function App() {
     <Route path='/product/:slug' element={<SingleProduct/>}/>
     <Route path='/categories' element={<Categorie/>}/>
     {/* <Route path="/button" element={<Button/>}/> */}
+
+
+
+    {/* Routes for authenticated user*/}
+    <Route path='/user' element={<UserPrivateRoute/>}>
+      <Route path='/user/address' element={<Address/>}/>
+      <Route path='/user/profile' element={<ManageProfile/>}/>
+      <Route path='/user/payment' element={<Payment/>}/>
+      <Route path='/user/orders' element={<Orders/>}/>
+    </Route>
+
+
     <Route path="*"element={<NotFound/>}/>
   </Routes>
   )

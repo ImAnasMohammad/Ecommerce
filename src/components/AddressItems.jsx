@@ -67,13 +67,13 @@ const AddressItems = ({setStage}) => {
         <Dailog dailogContent={dailogContent} setDailogContent={setDailogContent} >
             <AddressForm addressDataType={addresDetails} editAddressIndex={editAddressIndex} setEditAddressIndex={setEditAddressIndex} addressList={addressList} setAddressList={setAddressList} handleClick={handleClick}/>
         </Dailog>
-        <h4 className="go-to-back" onClick={()=>setStage(prev=>prev-1)}><FaArrowLeftLong/> Go Back</h4>
+        {setStage&&<h4 className="go-to-back" onClick={()=>setStage(prev=>prev-1)}><FaArrowLeftLong/> Go Back</h4>}
         <div className="select-address-wrapper">
-            <h3>Select Shipping Address <button className='btn btn-secondry' onClick={handleNewAddressClick}><IoAdd /> Add New Address</button></h3>
+            <h3>{setStage&&'Select'}Shipping Address <button className='btn btn-secondry' onClick={handleNewAddressClick}><IoAdd /> Add New Address</button></h3>
             <div className="address-list-wrapper">
                 {
                     addressList?.length>0?addressList?.map((item,index)=>(
-                        <SingleAddressItem key={index} item={item} index={index} removeAddress={removeAddress} editAddress={editAddress} selectAddress={selectAddress} setSelectAddress={setSelectAddress}/>
+                        <SingleAddressItem setStage={setStage} key={index} item={item} index={index} removeAddress={removeAddress} editAddress={editAddress} selectAddress={selectAddress} setSelectAddress={setSelectAddress}/>
                     )):<div className='center'>
                         <button className='btn btn-primary' style={{fontSize:'18px'}}onClick={handleNewAddressClick}><IoAdd /> Add New Address</button>
                     </div>

@@ -1,4 +1,4 @@
-import React, { Children, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { IoMdClose } from "react-icons/io";
 
 const Dailog = ({dailogContent,setDailogContent,children,dailogClose}) => {

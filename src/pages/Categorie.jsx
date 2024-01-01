@@ -22,7 +22,7 @@ const Categorie = () => {
         }
     ]
   return (
-    <Layout title="Men's Categorie" activePage="categories" >
+    <Layout title="Men's Categorie" >
         {
           console.log("first")
         }

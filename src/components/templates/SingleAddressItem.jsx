@@ -1,11 +1,11 @@
 import React from 'react'
 
-const SingleAddressItem = ({item,index,setSelectAddress,removeAddress,editAddress,selectAddress}) => {
+const SingleAddressItem = ({setStage,item,index,setSelectAddress,removeAddress,editAddress,selectAddress}) => {
   return (
     <>
-        <div className="address-single-wrapper" onClick={()=>setSelectAddress(index)}>
-            <div>
-              <div className={`radio-btn ${index===selectAddress?'active':''}`}></div>
+        <div className={`address-single-wrapper ${!setStage?'defaultCursor':''}`} onClick={()=>setSelectAddress(index)}>
+            <div className='address-max-width-wrapper'>
+              {setStage&&<div className={`radio-btn ${index===selectAddress?'active':''}`}></div>}
               <div className='address-wrapper'>
                   <div className='bold'>{item?.name}<span className='highlite'>{item?.type?'Office':'Home'}</span></div>
                   <div>{item?.address}</div>

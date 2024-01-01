@@ -15,34 +15,33 @@ const AddressForm = ({handleClick,addressDataType,editAddressIndex,addressList,s
     if(editAddressIndex>-1 && editAddressIndex<addressList?.length){
       setIsEdit(true);
       addressDispatch({type:"CHANGE_ALL_ADDRESS",payload:addressList[editAddressIndex]});
-    }else{
-      // setAddress(addressDataType);
     }
-  },[]);
+  },[editAddressIndex,addressList]);
 
   const handleSubmit =async(e)=>{
     e.preventDefault();
     let err = addressFormValidation(addressState);
     if(err){
       switch(err){
-        case "name":setErr(1);
+        case "":setErr();
                     toast.error("Invalid Name")
                     break;
-        case "phone":setErr(2);
+        case "":setErr(2);
                     toast.error("Invalid Phone")
                     break;
-        case "address":setErr(3);
+        case "":setErr(3);
                     toast.error("Invalid Address")
                     break;
-        case "district":setErr(4);
+        case "":setErr(4);
                     toast.error("Invalid District")
                     break;
-        case "state":setErr(4);
+        case "":setErr(4);
                     toast.error("Invalid State")
                     break;
-        case "pincode":setErr(4);
+        case "":setErr(4);
                     toast.error("Invalid Pincode")
                     break;
+        default:;
       }
       return;
     }
@@ -64,12 +63,12 @@ const AddressForm = ({handleClick,addressDataType,editAddressIndex,addressList,s
   return (
     <div className='address-form'>
       <form onSubmit={(e)=>handleSubmit(e)}>
-        <Input type="text"   cls={`${err===1 && ''}`} required={true} name ="name"     value={addressState?.name}       setValue={handleChange} label="name*" />
-        <Input type="number" cls={`${err===2 && ''}`} required={true} name ="phone"    value={addressState?.phone}      setValue={handleChange} label="Mobile number*" />
-        <Input type="text"   cls={`${err===3 && ''}`} required={true} name ="address"  value={addressState?.address}    setValue={handleChange} label="Address( house no, building no, landmark)*" />
-        <Input type="text"   cls={`${err===4 && ''}`} required={true} name ="district" value={addressState?.district}   setValue={handleChange} label="district/city/town*" />
-        <Input type="text"   cls={`${err===5 && ''}`} required={true} name ="state"    value={addressState?.state}      setValue={handleChange} label="state*" />
-        <Input type="number" cls={`${err===6 && ''}`} required={true} name ="pinCode"  value={addressState?.pinCode}    setValue={handleChange} label="pinCode" />
+        <Input type="text"   cls={`${err==="name"     && 'invalid'}`} required={true} name ="name"     value={addressState?.name}       setValue={handleChange} label="name*" />
+        <Input type="number" cls={`${err==="phone"    && 'invalid'}`} required={true} name ="phone"    value={addressState?.phone}      setValue={handleChange} label="Mobile number*" />
+        <Input type="text"   cls={`${err==="address"  && 'invalid'}`} required={true} name ="address"  value={addressState?.address}    setValue={handleChange} label="Address( house no, building no, landmark)*" />
+        <Input type="text"   cls={`${err==="district" && 'invalid'}`} required={true} name ="district" value={addressState?.district}   setValue={handleChange} label="district/city/town*" />
+        <Input type="text"   cls={`${err==="state"    && 'invalid'}`} required={true} name ="state"    value={addressState?.state}      setValue={handleChange} label="state*" />
+        <Input type="number" cls={`${err==="pincode"  && 'invalid'}`} required={true} name ="pinCode"  value={addressState?.pinCode}    setValue={handleChange} label="pinCode" />
         <div className='select-type'>
           <span onClick={()=>addressDispatch({type:"CHANGE_ADDRESS_TYPE",payload:0})} className={`highlite ${addressState?.type===0 && 'active'}`} >Home</span>
           <span onClick={()=>addressDispatch({type:"CHANGE_ADDRESS_TYPE",payload:1})} className={`highlite ${addressState?.type===1 && 'active'}`}>Office</span>

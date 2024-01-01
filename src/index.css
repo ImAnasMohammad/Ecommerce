@@ -12,6 +12,7 @@ font-family: 'Roboto', sans-serif; */
     --mainFontFamily:'Poppins';
     --mainColor:rgba(138, 44, 226,1);
     --mainHoverColor:rgba(138, 44, 226,0.9);
+    --mainHoverBgColor:rgb(230, 203, 255);
     --textColor:#ffff;
     --textSize:1rem;
     --text2Color:#000;
@@ -161,6 +162,13 @@ input[type="number"] {
 }
 .msg{
     text-transform: capitalize;
+}
+.verticle-center{
+    display:flex;
+    align-items: center;
+}
+.defaultCursor{
+    cursor: default !important;
 }
 span{
     user-select: none;
@@ -1401,6 +1409,9 @@ div.line{
 .address-single-wrapper:hover{
     box-shadow: 0px 0px 50px 0.5px rgba(0, 0, 0,0.1);
 }
+.address-max-width-wrapper{
+    flex: 1 1 auto;
+}
 .address-wrapper{
     display: flex;
     flex-direction: column;
@@ -1524,3 +1535,127 @@ $duration: 1.4s; */
    transform:rotate(450deg);
  }
 } */
+
+/* +++++++++++++++++++++++ css for profile nav +++++++++++++++ */
+.profile-navBar{
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap:2px;
+    width: 100%;
+}
+.profile-navBar .username,.profile-navBar ul{
+    background-color: var(--textColor);
+    padding: 2px;
+    display: flex;
+    flex-direction: column;
+    gap:2px;
+}
+
+.profile-navBar .username,.profile-navBar li a{
+    padding: 15px 20px;
+}
+.profile-navBar .username{
+    font-size: 1.2rem;
+    text-transform: capitalize;
+    font-weight: 500;
+    color: var(--textColor);
+    background-color: var(--mainColor);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap:10px;
+    width: 100%;
+    /* background-color: #fff; */
+}
+.username-wrapper{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* word-break: break-all; */
+}
+.profile-nav-toggle{
+    height:40px;
+    flex: 0 1 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all .5s ;
+}
+.profile-nav-toggle.rotate{
+    transform: rotate(180deg);
+
+}
+.profile-navBar ul{
+    height: fit-content;
+    overflow: hidden;
+}
+.profile-navBar ul.inactive{
+    height: 0px;
+    overflow: hidden;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+.profile-navBar ul li{
+    list-style-type: none;
+}
+.profile-navBar ul li a{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    text-transform: capitalize;
+    gap: 7px;
+    color: var(--text2Color);
+    font-size: 0.9rem;
+    transition: all .2s ease-in-out;
+}
+
+.profile-navBar ul li a:hover{
+    background-color:var(--mainHoverBgColor);
+    color:var(--mainColor)
+}
+.profile-navBar ul li a.active{
+    color: var(--mainColor);
+}
+
+.profile-wrapper{
+    display: flex;
+    padding: 10px;
+    max-width: 1200px;
+    margin: auto;
+    gap: 5px;
+}
+.profile-wrapper>div{
+    flex: 1 1 auto;
+}
+.profile-info-wrapper{
+    background-color: var(--textColor);
+    padding: 10px 20px;
+}
+.profile-info-wrapper>h2{
+    padding: 10px 0px 20px 0px;
+}
+
+.profile-personal-info{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.name-input{
+    display: flex;
+    gap: 5px;
+}
+/* .gender */
+
+.profile-info-wrapper .verticle-center label{
+    display: flex;
+    align-items: center;
+    gap:2px;
+    cursor: pointer;
+}
+.personal-info-gender-input .verticle-center{
+    margin-left: 10px;
+    gap:20px
+}

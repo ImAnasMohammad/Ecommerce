@@ -3,9 +3,9 @@ import Layout from '../components/layouts/Layout'
 
 const WishList = () => {
   return (
-    <Layout title="My Wishlist" activePage="wishlist">
+    <Layout title="My Wishlist">
     
-        </Layout>
+    </Layout>
   )
 }
 

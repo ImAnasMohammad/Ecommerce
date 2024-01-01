@@ -58,7 +58,7 @@ const Cart = () => {
     <AddressItems setStage={setRouteStage}/>
   ]
   return (
-    <Layout title="My Cart" activePage="cart">
+    <Layout title="My Cart">
       <div className="route-order-wrapper">
         <span className='visual-route'></span>
         <span className={`complete ${routeStage===1?'w-33':routeStage===2?'w-66':routeStage>=3?'w-100':''}`} ></span>
