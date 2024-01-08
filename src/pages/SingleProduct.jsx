@@ -4,11 +4,8 @@ import { ImportantProducts } from '../components/ImportantProducts';
 import {useCart} from '../context/cart'
 import { FaStar } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
-import { FaHeart } from "react-icons/fa";
-import { useWishList } from '../context/wishlist';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
-import d from '../components/dummyData/product.json';
 import img from '../img/f6.jpg'
 import img1 from '../img/f7.jpg'
 import img2 from '../img/p1.webp'
@@ -19,11 +16,10 @@ const SingleProduct = () => {
     const [activeImg,setActiveImg] = useState(0);
     const [activeSize,setActiveSize] = useState(0);
     const [cart,setCart] = useCart();
-    const [wishList,setWishList] = useWishList();
     const [avgRate,setAvgRate] = useState(0);
     const [product,setProduct] = useState(null);
     const [isInCart,setIsInCart] = useState(false);
-    const [isInWishList,setIsInWishList] = useState(false);
+    const [loadingType,setLoadingType] = useState(2);
 
     let FetchedProduct = {
         _id:"sfsfs8w4rjhwss93w4",
@@ -66,15 +62,13 @@ const SingleProduct = () => {
         }
         return;
     }
-    const handleClick = (isItCart)=>{
-        
-        if(isInCart && isItCart){
-            navigator('/cart');
-            return;
-        }
+    const handleClick = ()=>{
+        setLoadingType(3);
 
-        if(isInWishList && !isItCart){
-            navigator('/wishlilst');
+        setTimeout(()=>setLoadingType(0),3000)
+        
+        if(isInCart){
+            navigator('/cart');
             return;
         }
         if(!product?._id){
@@ -86,48 +80,41 @@ const SingleProduct = () => {
             size:product?.sizes[activeSize]
         }
         
-        if(isItCart){
-            setCart([...cart,newItem]);
-            setIsInCart(true);
-        }else{
-            setWishList([...wishList,newItem]);
-            setIsInWishList(true);
-        }
-        toast.success(`Product added to ${isItCart?'cart':'wishlist'} successfully...`)
+        setCart([...cart,newItem]);
+        setIsInCart(true);
+        toast.success(`Product added to cart successfully...`)
     }
+
     const getProduct = ()=>setProduct(FetchedProduct);
 
     useEffect(()=>{
         setIsInCart(searcProductInList(cart));
-        setIsInWishList(searcProductInList(wishList));
     },[activeSize]);
 
     useEffect(()=>{
         getProduct();
-        console.log(d)
     },[]);
 
 
     useEffect(()=>{
         setAvgRate((product?.rating?.reduce((acc,curr)=>acc+curr.rate,0)/product?.rating?.length)?.toFixed(1));
         setIsInCart(searcProductInList(cart));
-        setIsInWishList(searcProductInList(wishList));
     },[product]);
   return (
     <Layout title="single product">
         <section className="single-product-wrapper">
             <div className="row">
                 <div className="images">
-                    <img src={product?.imges[activeImg]} alt='Main Product' loading='lazy' />
-                    <div className="small-img-group">
-                        {
-                            product?.imges?.map((src,i)=>(
-                                <div className={`small-img-wrapper ${activeImg===i?'active':''}`} key={src}>
-                                    <img src={src} alt='Products list' onClick={()=>setActiveImg(i)} loading='lazy'/>
-                                </div>
-                            ))
-                        }
-                    </div>
+                        <img src={product?.imges[activeImg]} alt='Main Product' loading='lazy' />
+                        <div className="small-img-group">
+                            {
+                                product?.imges?.map((src,i)=>(
+                                    <div className={`small-img-wrapper ${activeImg===i?'active':''}`} key={src}>
+                                        <img src={src} alt='Products list' onClick={()=>setActiveImg(i)} loading='lazy'/>
+                                    </div>
+                                ))
+                            }
+                        </div>
                 </div>
                 <div className="details product-card">
                     <div className="path">
@@ -164,8 +151,13 @@ const SingleProduct = () => {
                         
                     </div>
                     <div className="cart-wistlist-wrapper">
-                        <button className='btn btn-primary' onClick={()=>handleClick(true)}><FaShoppingCart className='add-cart-icon' />{!isInCart?'Add':'Go '} to CART</button>
-                        <button className='btn btn-secondry' onClick={()=>handleClick(false)}><FaHeart className='add-wistlist-icon'/>{!isInWishList?'Add':'Go '} to WISHLIST</button>
+                        <button className='btn btn-primary' onClick={handleClick}>
+                            {
+                                loadingType===3?<div className="loader"></div>:<>
+                                    <FaShoppingCart className='add-cart-icon' /><span>{!isInCart?'Add':'Go '} Cart</span>
+                                </>
+                            }
+                        </button>
                     </div>
                     <div className="product-details">
                         <h3>Product Details</h3>

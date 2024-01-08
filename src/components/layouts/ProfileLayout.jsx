@@ -9,7 +9,6 @@ const ProfileLayout = ({children,desc,author,keywords,title,mainClass,name}) => 
             <ProfileNavBar name={name}/>
             <div>{children}</div>
         </div>
-
     </Layout>
   )
 }

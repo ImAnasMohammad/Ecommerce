@@ -22,29 +22,11 @@ const AddressForm = ({handleClick,addressDataType,editAddressIndex,addressList,s
     e.preventDefault();
     let err = addressFormValidation(addressState);
     if(err){
-      switch(err){
-        case "":setErr();
-                    toast.error("Invalid Name")
-                    break;
-        case "":setErr(2);
-                    toast.error("Invalid Phone")
-                    break;
-        case "":setErr(3);
-                    toast.error("Invalid Address")
-                    break;
-        case "":setErr(4);
-                    toast.error("Invalid District")
-                    break;
-        case "":setErr(4);
-                    toast.error("Invalid State")
-                    break;
-        case "":setErr(4);
-                    toast.error("Invalid Pincode")
-                    break;
-        default:;
-      }
+      setErr(err)
+      toast.error(`Invalid ${err}`)
       return;
     }
+    setErr('');
     const fetchedAddress = addressState;
     let newAddress = [...addressList];
     if(fetchedAddress?.isDefault){
@@ -63,12 +45,12 @@ const AddressForm = ({handleClick,addressDataType,editAddressIndex,addressList,s
   return (
     <div className='address-form'>
       <form onSubmit={(e)=>handleSubmit(e)}>
-        <Input type="text"   cls={`${err==="name"     && 'invalid'}`} required={true} name ="name"     value={addressState?.name}       setValue={handleChange} label="name*" />
-        <Input type="number" cls={`${err==="phone"    && 'invalid'}`} required={true} name ="phone"    value={addressState?.phone}      setValue={handleChange} label="Mobile number*" />
-        <Input type="text"   cls={`${err==="address"  && 'invalid'}`} required={true} name ="address"  value={addressState?.address}    setValue={handleChange} label="Address( house no, building no, landmark)*" />
-        <Input type="text"   cls={`${err==="district" && 'invalid'}`} required={true} name ="district" value={addressState?.district}   setValue={handleChange} label="district/city/town*" />
-        <Input type="text"   cls={`${err==="state"    && 'invalid'}`} required={true} name ="state"    value={addressState?.state}      setValue={handleChange} label="state*" />
-        <Input type="number" cls={`${err==="pincode"  && 'invalid'}`} required={true} name ="pinCode"  value={addressState?.pinCode}    setValue={handleChange} label="pinCode" />
+        <Input type="text"   className={`${err==="name"     && 'invalid'}`} required={true} name ="name"     value={addressState?.name}       setValue={handleChange} label="name*" />
+        <Input type="number" className={`${err==="phone"    && 'invalid'}`} required={true} name ="phone"    value={addressState?.phone}      setValue={handleChange} label="Mobile number*" />
+        <Input type="text"   className={`${err==="address"  && 'invalid'}`} required={true} name ="address"  value={addressState?.address}    setValue={handleChange} label="Address( house no, building no, landmark)*" />
+        <Input type="text"   className={`${err==="district" && 'invalid'}`} required={true} name ="district" value={addressState?.district}   setValue={handleChange} label="district/city/town*" />
+        <Input type="text"   className={`${err==="state"    && 'invalid'}`} required={true} name ="state"    value={addressState?.state}      setValue={handleChange} label="state*" />
+        <Input type="number" className={`${err==="pincode"  && 'invalid'}`} required={true} name ="pinCode"  value={addressState?.pinCode}    setValue={handleChange} label="pinCode" />
         <div className='select-type'>
           <span onClick={()=>addressDispatch({type:"CHANGE_ADDRESS_TYPE",payload:0})} className={`highlite ${addressState?.type===0 && 'active'}`} >Home</span>
           <span onClick={()=>addressDispatch({type:"CHANGE_ADDRESS_TYPE",payload:1})} className={`highlite ${addressState?.type===1 && 'active'}`}>Office</span>
@@ -80,9 +62,6 @@ const AddressForm = ({handleClick,addressDataType,editAddressIndex,addressList,s
         </label>
         <button className='btn btn-primary' type='submit' style={{width:'100%'}}>Save</button>
       </form>
-      {
-        console.log(addressList)
-      }
     </div>
   )
 }

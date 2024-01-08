@@ -7,13 +7,13 @@ import Product from './pages/Product';
 import SingleProduct from './pages/SingleProduct';
 import NotFound from './pages/NotFound';
 import Cart from './pages/Cart';
-import WishList from './pages/WishList';
 import Join from './pages/Join';
 import UserPrivateRoute from './components/routes/UserPrivateRoute';
 import Address from './pages/Address';
 import ManageProfile from './pages/ManageProfile';
 import Payment from './pages/Payment';
 import Orders from './pages/Orders';
+import Spinner from './components/components/Spinner';
 // import Button from './components/components/Button';
 
 function App() {
@@ -22,10 +22,10 @@ function App() {
     <Route path='/' element={<Home/>}/>
     <Route path='/products/:slug' element={<Product/>}/>
     <Route path='/cart' element={<Cart/>}/>
-    <Route path='/wishlist' element={<WishList/>}/>
     <Route path='/join' element={<Join/>}/>
     <Route path='/product/:slug' element={<SingleProduct/>}/>
     <Route path='/categories' element={<Categorie/>}/>
+    <Route path='/spinner' element={<Spinner></Spinner>} />
     {/* <Route path="/button" element={<Button/>}/> */}
 
 

@@ -1,21 +1,19 @@
 import {NavLink, useLocation} from 'react-router-dom';
 import logo from '../../img/logo.png';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useCart } from '../../context/cart';
 import { FaSearch } from "react-icons/fa";
 import { useSearch } from '../../context/search';
 import { IoHomeSharp } from "react-icons/io5";
 import { BiSolidCategory } from "react-icons/bi";
 import { FaShoppingCart } from "react-icons/fa";
-import { FaHeart } from "react-icons/fa";
 import { RxEnter } from "react-icons/rx";
 import { useAuth } from '../../context/auth';
 import { FaUser } from "react-icons/fa";
-import { useWishList } from '../../context/wishlist';
 
 const SearchWrapper = ({className,search,setSearch,handleSearch}) =>{
     const location = useLocation();
-    const pagesHaveSearchBar = ['','home','categories','product','wishlist'];
+    const pagesHaveSearchBar = ['','home','categories','product'];
     console.log(location.pathname.split('/')[1])
     return (
         pagesHaveSearchBar?.includes(location.pathname.split('/')[1])&&<div className={`search-wrapper ${className}`}>
@@ -29,10 +27,9 @@ const SearchWrapper = ({className,search,setSearch,handleSearch}) =>{
 const NavBar = () => {
     const [open,setOpen] = useState(false);
     const [cart,setCart] = useCart();
-    const [wishList,setWishList] = useWishList();
     const [search,setSearch] = useSearch();
     const [auth,setAuth] = useAuth();
-
+    const navRef = useRef()
     const handleSearch = ()=>{
         console.log("first")
     }
@@ -51,9 +48,15 @@ const NavBar = () => {
             slug:'kids'
         }
     ];
+    const scrolled = () =>{
+        navRef.current?.classList?.toggle('navScroll',window.scrollY>0)
+    }
+    useEffect(()=>{
+        window.addEventListener('scroll',scrolled);
+    },[])
   return (
         <>
-            <nav className="main-navBar">
+            <nav className="main-navBar" ref={navRef}>
                 <div className="nav-wrapper">
                     <div className="logo-wrapper">
                         <NavLink to="">
@@ -79,9 +82,6 @@ const NavBar = () => {
                             </li>
                             <li>
                                 <NavLink to="/cart" activeClassName='active'><FaShoppingCart className='nav-icon' />cart({cart?.length})</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/wishlist" activeClassName='active'><FaHeart className='nav-icon'/>wishlist({wishList?.length})</NavLink>
                             </li>
                             <li>
                                 {

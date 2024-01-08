@@ -1,10 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Input from '../components/Input'
 
-const PersonalInformationForm = ({user,err,handleClick,handleChange}) => {
-  useEffect(()=>{
-
-  })
+const PersonalInformationForm = ({user,err,handleClick,handleChange,isDisable}) => {
   return (
       <form className='profile-personal-info' action="" onSubmit={handleClick}>
         <div className="name-input">
@@ -28,7 +25,7 @@ const PersonalInformationForm = ({user,err,handleClick,handleChange}) => {
             </label>
           </div>
         </div>
-        <button type="submit" style={{maxWidth:'200px'}} className='btn btn-primary'>Save</button>
+        <button disabled={isDisable} type="submit" style={{maxWidth:'200px'}} className='btn btn-primary'>Save</button>
       </form>
   )
 }

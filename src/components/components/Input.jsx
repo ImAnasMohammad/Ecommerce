@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Input = ({value,setValue,label,type,required,clas,name}) => {
+const Input = ({value,setValue,label,type,required,className,name}) => {
   return (
     <div className='input-wrapper' key={name}>
         <label>
@@ -8,7 +8,7 @@ const Input = ({value,setValue,label,type,required,clas,name}) => {
                 type={type}
                 name={name}
                 onChange={setValue}
-                className={clas}
+                className={className}
                 required={required}
                 value={value}
             />

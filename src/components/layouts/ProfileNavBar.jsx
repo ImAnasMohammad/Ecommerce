@@ -11,11 +11,15 @@ import { IoIosArrowDown } from "react-icons/io";
 
 const ProfileNavBar = ({name}) => {
   const [isActive,setIsActive] = useState(true);
+  const handleClick = (e)=>{
+    e.stopPropagation();
+    setIsActive(pre=>!pre)
+  }
   return (
     <div className='profile-navBar'>
-        <div className="username">
+        <div className="username" onClick={handleClick}>
           <span className="username-wrapper">Hello {name??"User"}</span>
-          <span className={`profile-nav-toggle ${!isActive&&'rotate'}`} onClick={()=>setIsActive(pre=>!pre)}><IoIosArrowDown/></span>
+          <span className={`profile-nav-toggle ${!isActive&&'rotate'}`} onClick={handleClick}><IoIosArrowDown/></span>
         </div>
         <ul className={`${!isActive&&'inactive'}`}>
           <li>

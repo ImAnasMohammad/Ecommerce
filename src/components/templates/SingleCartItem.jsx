@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { IoMdClose } from "react-icons/io";
 import img from '../../img/p1.webp'
+import formatCurrency from '../../ReusableFunctions/formatCurrency';
 const SingleCartItem = ({item,index,removeCartItem,handleChange}) => {
     const [price,setPrice] = useState('');
     const [discountPrice,setDiscountPrice] = useState('');
@@ -11,8 +12,8 @@ const SingleCartItem = ({item,index,removeCartItem,handleChange}) => {
         if(item?.discount){
             discountPrice = item?.price - ((item?.price*item?.discount)/100);
         }
-        price = new Intl.NumberFormat('en-IN', {style: 'currency',currency: 'INR'}).format(price);
-        discountPrice = new Intl.NumberFormat('en-IN', {style: 'currency',currency: 'INR'}).format(discountPrice);
+        price = formatCurrency(price);
+        discountPrice = formatCurrency(discountPrice);
         setPrice(price);
         setDiscountPrice(discountPrice);
 
