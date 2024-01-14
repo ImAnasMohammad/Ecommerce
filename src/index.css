@@ -440,9 +440,8 @@ span{
     display: none;
 }
 .nav-menu-toggle div{
-    height:4px;
     width:35px;
-    background-color:var(--textColor);
+    border: 2px solid var(--textColor);
     border-radius:2px;
 }
 
@@ -486,7 +485,10 @@ nav .nav-wrapper{
     background-color: var(--textColor);
     border-radius: var(--searchBorder-radius);
     width: 400px;
-    display: none;
+}
+.navScroll .search-wrapper{
+    border: 2px solid var(--mainColor);
+    box-shadow: 0px 0px 100px 2px rgba(0,0,0,0.2);
 }
 .search-wrapper.mobile{
     display: none;
@@ -558,8 +560,7 @@ nav .mobile-nav-toogle-wrapper{
     color:var(--mainColor);
 }
 .navScroll .nav-menu-toggle div{
-    background-color:var(--mainColor);
-    height: 200px;
+    border-color:var(--mainColor);
 }
 @media only screen  and (max-width:1200px){
     nav div ul li a.active{
@@ -598,6 +599,9 @@ nav .mobile-nav-toogle-wrapper{
     .nav-wrapper{
         justify-content:space-between;
     }
+    .navScroll{
+     display: block;   
+    }
     nav div ul li a:before{
         height:0px;
     }
@@ -631,6 +635,15 @@ nav .mobile-nav-toogle-wrapper{
         width:100vw;
         right:0%;
         display:none
+    }
+    .navScroll .nav-menu-toggle{
+        height: 10px;
+    }
+    .navScroll .nav-menu-toggle div{
+        height: 100px;
+    }
+    .main-navBar.navScroll .nav-menu-toggle>div{
+        border:2px solid var(--mainColor) !important;
     }
     .shadow-wrapper.active{
         display: block;
