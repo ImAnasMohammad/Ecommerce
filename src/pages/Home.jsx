@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import Layout from '../components/layouts/Layout';
-import Slides from '../components/Slides';
-import img from '../img/f7.jpg';
+import Slides from '../components/layouts/Slides';
 import { ImportantProducts } from '../components/ImportantProducts';
 import { useLoading } from '../context/loading';
 import Banner from '../components/layouts/Banner';

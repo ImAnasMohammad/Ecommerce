@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
-import f9 from '../img/f9.jpg';
-import f8 from '../img/f8.jpg';
-import f7 from '../img/f7.jpg';
-import f6 from '../img/f6.jpg';
+import React, { useEffect, useState } from 'react';
+import f9 from '../../img/f9.jpg';
+import f8 from '../../img/f8.jpg';
+import f7 from '../../img/f7.jpg';
+import f6 from '../../img/f6.jpg';
 import { Link } from 'react-router-dom';
 const Slides = () => {
     let obj = [f6,f7,f8,f9]
