@@ -20,7 +20,8 @@ font-family: 'Roboto', sans-serif; */
     --btnPaddingHor:30px;
     --successColor:green;
     --searchBorder-radius:10px;
-    --failedColor:rgb(232, 5, 5)
+    --failedColor:rgb(232, 5, 5);
+    --lytGrey:#f2f2f2
 }
 *{
     margin: 0;
@@ -57,6 +58,28 @@ body{
     height: 100%;
     object-fit: cover;
 }
+
+.f-22{
+    font-size: 22px;
+}
+/* confrim box css  */
+.confrim-wrapper{
+    display: flex;
+    margin-top: 15px;
+    justify-content: space-between;
+}
+.confrim-wrapper button{
+    flex:0 1 calc(50% - 10px);
+    padding:7px;
+    color: #fff;
+    border:none;
+    outline: none;
+    font-size: 1rem;
+    cursor: pointer;
+}
+.confrim-wrapper button.cancle-btn{
+    color: #000;
+}
 .popup-model{
     position: fixed;
     top: 0;
@@ -75,7 +98,7 @@ body{
     padding: 10px 20px;
     border-radius: 5px;
     background-color: #fff;
-    max-width: 450px;
+    max-width: 500px;
     width: 95%;
     height: fit-content;
     margin-top: 30px;
@@ -202,6 +225,9 @@ span{
 .success{
     color: var(--successColor);
 }
+.failed{
+    color: var(--failedColor);
+}
 .center{
     display: flex;
     justify-content: center;
@@ -314,6 +340,10 @@ span{
     animation: none;
     cursor: no-drop;
     background-color: var(--mainHoverColor);
+}
+.btn.btn-primary:disabled{
+    background-color:var(--lytGrey) ;
+    color:var(--text2Color)
 }
 .btn.btn-secondry:disabled{
     background-color: #ffff;
@@ -1605,7 +1635,6 @@ div.line{
     flex-direction: column;
     gap:5px;
     flex:1 1 auto;
-    /* background-color: red; */
     overflow: hidden;
 }
 .highlite{
@@ -1848,4 +1877,193 @@ $duration: 1.4s; */
 .personal-info-gender-input .verticle-center{
     margin-left: 10px;
     gap:20px
+}
+
+
+
+
+/* css for admin  */
+.filter-btn{
+    display: flex;
+    gap: 5px;
+    align-items: center ;
+    font-size: 16px;
+}
+.admin-pagenation{
+    display: flex;
+    align-items: center;
+}
+.admin-pagenation>span,
+.admin-pagenation>button{
+    
+    font-size: 16px;
+}
+.admin-pagenation>span{
+    margin:0px 5px;
+    background-color: rgb(234, 234, 234);
+    padding: 7px 20px;
+}
+.admin-pagenation>button{
+    padding: 10px 20px;
+    display: flex;
+    align-items:center;
+}
+.main-admin-wrapper{
+    background-color: var(--textColor);
+    padding:20px;
+    max-height:calc(100dvh - 85px);
+    overflow: auto;
+}
+.main-admin-wrapper>div{
+    display: flex;
+    flex-direction: column;
+}
+
+.heading-admin-page h2{
+    display: inline;
+}
+.heading-admin-page button,.search-btn{
+    padding:7px 15px ;
+    font-size: .8rem;
+    letter-spacing: .5px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    float: right;
+}
+.search-main-wrapper-admin{
+    display: flex;
+    justify-content: space-between;
+}
+.search-main-wrapper-admin{
+    padding: 25px 0px;
+}
+.search-wrapper-admin,
+.search-main-wrapper-admin{
+    display: flex;
+    gap: 5px;
+    position: relative;
+}
+.search-wrapper{
+    display: flex;
+    align-items: center;
+    max-width: fit-content;
+    border-radius: 2px;
+    padding: 5px 10px;
+    gap: 5px;
+    border:1px solid rgb(163, 163, 163);
+    box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.1);
+
+}
+.search-wrapper:focus-within{
+    border:1px solid var(--mainColor)
+}
+.search-wrapper input{
+    border:0px;
+    outline: none;
+    padding: 2px;
+    width: 400px;
+}
+.main-content-admin-wrapper{
+    position: relative;
+    min-height: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+
+.main-content-admin-wrapper table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid var(--lytGrey);
+}
+.main-content-admin-wrapper table thead{
+    background-color: var(--mainColor);
+    color: var(--textColor);
+}
+.main-content-admin-wrapper table thead tr td{
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.main-content-admin-wrapper th,.main-content-admin-wrapper td {
+    text-align: left;
+    padding: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.table-max-td{
+    max-width: 200px;
+}
+.table-max-td abbr{
+    
+    text-decoration: none;
+}
+.table-actions{
+    display: flex;
+    justify-content:flex-end ;
+    gap: 30px;
+    margin-right: 10px;
+
+}
+.main-content-admin-wrapper tr:nth-child(even){
+    background-color:var(--lytGrey)
+}
+.table-actions button{
+    background-color: transparent;
+    border:none;
+    outline: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+.table-actions button.edit{
+    color: var(--mainColor);
+}
+.table-actions button.delete{
+    color: red;
+}
+
+/* admin dashboard  */
+
+.dashboard-items{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+.dashboard-item{
+    padding: 15px 30px;
+    background-color: rgb(233, 233, 233);
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    border-radius: 5px;
+}
+.dashboard-item>span{
+    font-size: 2rem;
+    height: fit-content;
+    background-color: rgba(0, 255, 0, 0.5);
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(--textColor);
+}
+.dashboard-item-content{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    
+}
+.dashboard-item-content>span{
+    font-size: 2rem;
+    font-weight:bold;
+}
+.dashboard-item-content>span.item-heading{
+    font-size: 1.2rem;
+    color:rgb(106, 106, 106);
 }

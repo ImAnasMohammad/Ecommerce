@@ -14,6 +14,13 @@ import ManageProfile from './pages/ManageProfile';
 import Payment from './pages/Payment';
 import Orders from './pages/Orders';
 import Spinner from './components/components/Spinner';
+import AdminHome from './pages/adminPages/AdminHome';
+import AdminProducts from './pages/adminPages/AdminProducts';
+import AdminCategories from './pages/adminPages/AdminCategories';
+import AdminSubCategories from './pages/adminPages/AdminSubCategories';
+import AdminOrders from './pages/adminPages/AdminOrders';
+import AdminManageWebsite from './pages/adminPages/AdminManageWebsite';
+import AdminUsers from './pages/adminPages/AdminUsers';
 // import Button from './components/components/Button';
 
 function App() {
@@ -36,6 +43,16 @@ function App() {
       <Route path='/user/profile' element={<ManageProfile/>}/>
       <Route path='/user/payment' element={<Payment/>}/>
       <Route path='/user/orders' element={<Orders/>}/>
+    </Route>
+
+    <Route path='/admin' element={<UserPrivateRoute/>}>
+      <Route path='dashboard' element={<AdminHome/>}/>
+      <Route path='products' element={<AdminProducts/>}/>
+      <Route path='categories' element={<AdminCategories/>}/>
+      <Route path='sub-categories' element={<AdminSubCategories/>}/>
+      <Route path='users' element={<AdminUsers/>}/>
+      <Route path='orders' element={<AdminOrders/>}/>
+      <Route path='settings' element={<AdminManageWebsite/>}/>
     </Route>
 
 

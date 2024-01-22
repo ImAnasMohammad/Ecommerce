@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { IoMdClose } from "react-icons/io";
 
-const Dailog = ({dailogContent,setDailogContent,children,dailogClose}) => {
+const Dailog = ({dailogContent,setDailogContent,children,dailogClose,title}) => {
   const ref = useRef();
   const handleClick = (e) =>{
     e.stopPropagation();
@@ -18,7 +18,7 @@ const Dailog = ({dailogContent,setDailogContent,children,dailogClose}) => {
 
   return dailogContent&&(<div className="popup-model" onClick={closeDailouge}>
       <div className="popup-wrapper" ref={ref} onClick={handleClick}>
-        <header><h3>{dailogContent?.title}</h3><button onClick={closeDailouge}><IoMdClose /></button></header>
+        <header><h3>{title ?? dailogContent?.title ?? "Confrimation"}</h3><button onClick={closeDailouge}><IoMdClose /></button></header>
         <div className="dailog-content">
           {
             children
@@ -30,3 +30,7 @@ const Dailog = ({dailogContent,setDailogContent,children,dailogClose}) => {
 }
 
 export default Dailog
+
+
+
+
