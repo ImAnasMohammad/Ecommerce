@@ -13,7 +13,7 @@ import { format } from '../../../ReusableFunctions/formatCurrency'
 const AdminLayout = ({children,dailogTitle,currentDailougContent,setCurrentDailougContent,page,handleCreate,handleSearch,searchQuery,setSearchQuery,count}) => {
   const [loading] = useLoading();
   const searchAvoid = ['website','dashboard'];
-  const newBtnAvoid = ['website','users','dashboard'];
+  const newBtnAvoid = ['website','users','dashboard','orders'];
   const paginationAvoid = ['dashboard','website'];
   const filterAvoid = ['dashboard','website'];
   count = format(count);

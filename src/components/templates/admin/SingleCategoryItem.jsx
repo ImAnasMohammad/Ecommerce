@@ -12,6 +12,9 @@ const SingleCategoryItem = ({id,item,handleClick}) => {
         {
             item?.subCategory && <td className='table-max-td'><abbr title={item?.subCategory}>{item?.subCategory}</abbr></td>
         }
+        {
+            item?.type && <td className='table-max-td'><abbr title={item?.type}>{item?.type}</abbr></td>
+        }
         
         <td className='table-actions'>
             <button onClick={()=>handleClick(item,true)}className='edit'><abbr title="Edit"><MdModeEditOutline/></abbr></button>

@@ -14,12 +14,11 @@ const SubCategoriesForm = ({allCategories,value,callBack}) => {
   return (
 
     <div style={{display:'flex',flexDirection:'column',gap:'20px'}}>
-
         <div className='search-wrapper' style={{width:'100%'}}>
           <input
             type="text"
             className='search-input'
-            placeholder={!subCategory && 'Create New Category'}
+            placeholder={!subCategory && 'Sub Category'}
             value={subCategory}
             style={{maxWidth:'100%'}}
             onChange={e=>setSubCategory(e.target.value)}
@@ -32,9 +31,6 @@ const SubCategoriesForm = ({allCategories,value,callBack}) => {
           }
         </Select>
         <button onClick={handleClick} className="btn btn-primary search-btn" style={{float:'left',width:'fit-content'}}> {value?'Edit':'Create'}</button>
-    {
-      console.log(value)
-    }
     </div>
   )
 }

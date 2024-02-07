@@ -31,6 +31,9 @@ const AdminNav = ({name}) => {
             <NavLink to="/admin/sub-categories" activeClassName='active'>Manage Sub categories</NavLink>
           </li>
           <li>
+            <NavLink to="/admin/product-type" activeClassName='active'>Manage Product type</NavLink>
+          </li>
+          <li>
             <NavLink to="/admin/orders" activeClassName='active'>Manage Orders</NavLink>
           </li>
           <li>

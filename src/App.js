@@ -18,9 +18,11 @@ import AdminHome from './pages/adminPages/AdminHome';
 import AdminProducts from './pages/adminPages/AdminProducts';
 import AdminCategories from './pages/adminPages/AdminCategories';
 import AdminSubCategories from './pages/adminPages/AdminSubCategories';
+import AdminProductType from './pages/adminPages/AdminProductType';
 import AdminOrders from './pages/adminPages/AdminOrders';
 import AdminManageWebsite from './pages/adminPages/AdminManageWebsite';
 import AdminUsers from './pages/adminPages/AdminUsers';
+import AdminAddProduct from './pages/adminPages/AdminAddProduct';
 // import Button from './components/components/Button';
 
 function App() {
@@ -48,8 +50,11 @@ function App() {
     <Route path='/admin' element={<UserPrivateRoute/>}>
       <Route path='dashboard' element={<AdminHome/>}/>
       <Route path='products' element={<AdminProducts/>}/>
+      <Route path='add-product/:id' element={<AdminAddProduct/>}/>
+      <Route path='add-product' element={<AdminAddProduct/>}/>
       <Route path='categories' element={<AdminCategories/>}/>
       <Route path='sub-categories' element={<AdminSubCategories/>}/>
+      <Route path='product-type' element={<AdminProductType/>}/>
       <Route path='users' element={<AdminUsers/>}/>
       <Route path='orders' element={<AdminOrders/>}/>
       <Route path='settings' element={<AdminManageWebsite/>}/>
